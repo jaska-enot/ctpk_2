@@ -11,6 +11,7 @@ public class ChelikController : MonoBehaviour
     private const string HorizontalAxisName = "Horizontal";
     private float _hAxisValue;
     private static readonly int Speed = Animator.StringToHash("speed");
+    private static readonly int isDown = Animator.StringToHash("isDown");
 
 
     // Start is called before the first frame update
@@ -28,15 +29,28 @@ public class ChelikController : MonoBehaviour
         _animator.SetInteger(Speed, (int)_hAxisValue);
         _rigidbody.AddForce(new Vector2(_hAxisValue*2, 0.0f));
 
-
             
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _rigidbody.AddForce(new Vector2(0.0f, 10.0f));
 
         }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
+            _animator.SetBool(isDown,true);
+
         }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            _animator.SetBool(isDown,false);
+
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+
     }
 }
